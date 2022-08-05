@@ -4,7 +4,7 @@ import { readCard } from "../utils/api";
 import CardForm from "./CardForm";
 
 function EditCard({ setLoading, loading }) {
-  const { cardId, deckId } = useParams();
+  const { cardId} = useParams();
   const [initialEditCardData, setCardData] = useState();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function EditCard({ setLoading, loading }) {
       return () => abortController.abort();
     }
     loadEditCardData();
-  }, []);
+  }, [cardId]);
 
   const renderView = (
     <div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, useParams, useRouteMatch } from "react-router-dom";
+import { Switch, Route, useParams} from "react-router-dom";
 import AddCard from "./AddCard";
 import EditDeck from "./EditDeck";
 import Breadcrumb from "./Breadcrumb";
@@ -12,7 +12,6 @@ import { readDeck } from "../utils/api";
 function Deck({ setLoading, loading }) {
   const { deckId } = useParams();
   const [currentDeck, setCurrentDeck] = useState(undefined);
-  const { url } = useRouteMatch();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -32,7 +31,7 @@ function Deck({ setLoading, loading }) {
       loadCurrentDeck();
     }
     return () => abortController.abort();
-  }, [loading]);
+  }, [loading, deckId]);
 
   if (currentDeck && !loading) {
     return (

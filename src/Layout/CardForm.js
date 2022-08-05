@@ -1,11 +1,12 @@
-import React, { useEffect, useState,Fragment } from "react";
-import { useParams, useHistory, useRouteMatch } from "react-router-dom";
+//edit with setcurrentdeck
+
+import React, {useState,Fragment } from "react";
+import { useParams, useHistory} from "react-router-dom";
 import { createCard, updateCard } from "../utils/api";
 import { Button } from "./Button";
 
 function CardForm({ initialCardData, setLoading }) {
   const { deckId } = useParams();
-  const { url } = useRouteMatch();
   const [cardData, setCardData] = useState(initialCardData);
   const history = useHistory();
 

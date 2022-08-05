@@ -5,17 +5,19 @@ import { Link, useParams } from "react-router-dom";
 const Breadcrumb = ({ crumbs, currentDeck, loading }) => {
   const { deckId, cardId } = useParams();
   const [breadcrumbs, setBreadcrumbs] = useState([]);
-  const routes = [
-    { path: "/", name: "Home" }, // Home
-    { path: "/decks/:deckId", name: "Deck" }, // Deck
-    { path: "/decks/new", name: "Create Deck" }, // CreateDeck
-    { path: "/decks/:deckId/study", name: "Study" }, // Study
-    { path: "/decks/:deckId/edit", name: "Edit Deck" }, // EditDeck
-    { path: "/decks/:deckId/cards/new", name: "Add Card" }, // AddCard
-    { path: "/decks/:deckId/cards/:cardId/edit", name: "Edit Card" }, // EditCard
-  ];
+
 
   useEffect(() => {
+
+    const routes = [
+      { path: "/", name: "Home" }, // Home
+      { path: "/decks/:deckId", name: "Deck" }, // Deck
+      { path: "/decks/new", name: "Create Deck" }, // CreateDeck
+      { path: "/decks/:deckId/study", name: "Study" }, // Study
+      { path: "/decks/:deckId/edit", name: "Edit Deck" }, // EditDeck
+      { path: "/decks/:deckId/cards/new", name: "Add Card" }, // AddCard
+      { path: "/decks/:deckId/cards/:cardId/edit", name: "Edit Card" }, // EditCard
+    ];
     const abortController = new AbortController();
     async function loadBreadcrumbs() {
       try {
