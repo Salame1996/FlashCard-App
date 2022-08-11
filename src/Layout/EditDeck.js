@@ -1,4 +1,4 @@
-import React, {Fragment } from "react";
+import React, { Fragment } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { Button } from "./Button";
 import { updateDeck } from "../utils/api/index";
@@ -8,7 +8,6 @@ function EditDeck({ setCurrentDeck, currentDeck, setLoading, loading }) {
   const { deckId } = useParams();
 
   const history = useHistory();
- 
 
   const handleChange = ({ target }) => {
     let val = target.value;

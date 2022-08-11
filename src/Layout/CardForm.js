@@ -1,47 +1,16 @@
-//edit with setcurrentdeck
+import React, { Fragment } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
+import { Button } from './Button'
 
-import React, {useState,Fragment } from "react";
-import { useParams, useHistory} from "react-router-dom";
-import { createCard, updateCard } from "../utils/api";
-import { Button } from "./Button";
-
-function CardForm({ initialCardData, setLoading }) {
-  const { deckId } = useParams();
-  const [cardData, setCardData] = useState(initialCardData);
-  const history = useHistory();
+function CardForm({ cardData, setCardData, handleSubmit }) {
+  const { deckId } = useParams()
+  const history = useHistory()
 
   const handleChange = ({ target }) => {
     setCardData({
       ...cardData,
       [target.name]: target.value,
-    });
-  };
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const abortController = new AbortController();
-
-    try {
-      if (cardData.id) {
-        setLoading(true);
-        await updateCard(cardData, abortController.signal);
-        setLoading(false);
-        history.push(`/decks/${deckId}`);
-      } else {
-        setLoading(true);
-        await createCard(deckId, cardData, abortController.signal);
-        setCardData(initialCardData);
-        setLoading(false);
-        history.push(`/decks/${deckId}`);
-      }
-    } catch (error) {
-      if (error.name === "AbortError") {
-        console.log("CardForm Aborted");
-      } else {
-        throw error;
-      }
-    }
-    return () => abortController.abort();
+    })
   }
 
   const renderView = (
@@ -67,7 +36,7 @@ function CardForm({ initialCardData, setLoading }) {
         />
         <Button
           onClick={() => {
-            return history.push(`/decks/${deckId}`);
+            return history.push(`/decks/${deckId}`)
           }}
         >
           Done
@@ -75,7 +44,7 @@ function CardForm({ initialCardData, setLoading }) {
         <Button type="submit">Save</Button>
       </form>
     </Fragment>
-  );
-  return renderView;
+  )
+  return renderView
 }
-export default CardForm;
+export default CardForm
